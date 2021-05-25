@@ -21,34 +21,18 @@ public class MowingTheField {
 			char ch = next().charAt(0);
 			int s = readInt();
 			
-			if (ch == 'N') {
-				for (int i = curY + 1; i <= curY + s; i ++) { 
-					if (grid[curX][i] != -1) ans = Math.min(ans, time - grid[curX][i]);
-					grid[curX][i] = time; 
-					time ++; 
-				}
-				curY += s;
-			} else if (ch == 'E') {
-				for (int i = curX + 1; i <= curX + s; i ++) { 
-					if (grid[i][curY] != -1) ans = Math.min(ans, time - grid[i][curY]);
-					grid[i][curY] = time; 
-					time ++; 
-				}
-				curX += s;
-			} else if (ch == 'S') {
-				for (int i = curY - 1; i >= curY - s; i --) {
-					if (grid[curX][i] != -1) ans = Math.min(ans, time - grid[curX][i]);
-					grid[curX][i] = time;
-					time ++;
-				}
-				curY -= s;
-			} else {
-				for (int i = curX - 1; i >= curX - s; i --) {
-					if (grid[i][curY] != -1) ans = Math.min(ans, time - grid[i][curY]);
-					grid[i][curY] = time;
-					time ++;
-				}
-				curX -= s;
+			int dirX = 0, dirY = 0;
+			if (ch == 'N') dirY = 1;
+			else if (ch == 'S') dirY = -1;
+			else if (ch == 'W') dirX = -1;
+			else dirX = 1;
+			
+			for (int i = 0; i < s; i ++) {
+				curX += dirX;
+				curY += dirY;
+				if (grid[curX][curY] != -1) ans = Math.min(ans, time - grid[curX][curY]);
+				grid[curX][curY] = time;
+				time ++;
 			}
 		}
 		
