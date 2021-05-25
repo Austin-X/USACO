@@ -15,7 +15,7 @@ public class MilkMeasurement {
 	
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new FileReader("measurement.in"));
-		pw = new PrintWriter("measurement.out");
+		pw = new PrintWriter(new BufferedWriter(new FileWriter("measurement.out")));
 		
 		int n = readInt();
 		Tuple[] arr = new Tuple[n];
