@@ -8,7 +8,7 @@ public class WhyDidTheCowCrossTheRoad_III {
 	
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new FileReader("cowqueue.in"));
-		pw = new PrintWriter("cowqueue.out");
+		pw = new PrintWriter(new BufferedWriter(new FileWriter("cowqueue.out")));
 		int n = readInt(), time = 0;
 		int[][] c = new int[n][2];
 		boolean[] vis = new boolean[n];
