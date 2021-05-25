@@ -8,7 +8,7 @@ public class MixingMilk {
 	
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new FileReader("mixmilk.in"));
-		pw = new PrintWriter("mixmilk.out");
+		pw = new PrintWriter(new BufferedWriter(new FileWriter("mixmilk.out")));
 		
 		int[] c = new int[3], m = new int[3];
 		for (int i = 0; i < 3; i ++) {
