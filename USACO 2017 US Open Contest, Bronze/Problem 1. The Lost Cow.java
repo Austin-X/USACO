@@ -8,7 +8,7 @@ public class TheLostCow {
 	
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new FileReader("lostcow.in"));
-		pw = new PrintWriter("lostcow.out");
+		pw = new PrintWriter(new BufferedWriter(new FileWriter("lostcow.out")));
 		
 		int x = readInt(), y = readInt();
 		
