@@ -10,7 +10,7 @@ public class MountainView {
 		int x, y;
 		Pair (int x, int y) { this.x = x; this.y = y; }
 		public int compareTo(Pair p) { 
-			if (x - y == p.x - p.y) return Integer.compare(y, p.y); 
+			if (x - y == p.x - p.y) return -Integer.compare(y, p.y); 
 			return Integer.compare(x - y, p.x - p.y); 
 		}
 	}
@@ -23,20 +23,8 @@ public class MountainView {
 		Pair[] arr = new Pair[n];
 		for (int i = 0; i < n; i ++) arr[i] = new Pair(readInt(), readInt());
 		Arrays.parallelSort(arr);
-		ArrayList<Pair> list = new ArrayList<Pair>();
-		
-		for (int i = 0; i < n - 1; i ++) {
-			Pair p1 = arr[i], p2 = arr[i + 1];
-			if (p1.x - p1.y == p2.x - p2.y) continue;
-			list.add(p1);
-		}
-		list.add(arr[n - 1]);
-		
-		max = list.get(0).x + list.get(0).y;
-		for (int i = 1; i < list.size(); i ++) {
-			Pair p = list.get(i);
-			if (max < p.x + p.y) { ans ++; max = p.x + p.y; }
-		}
+		max = arr[0].x + arr[0].y;
+		for (int i = 1; i < n; i ++) if (max < arr[i].x + arr[i].y) { ans ++; max = arr[i].x + arr[i].y; }
 		pw.println(ans);
 		pw.close();
 	}
