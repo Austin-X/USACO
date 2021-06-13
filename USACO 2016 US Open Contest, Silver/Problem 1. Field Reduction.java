@@ -2,9 +2,9 @@ import java.io.*;
 import java.util.*;
 
 public class FieldReduction {
-	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static BufferedReader br;
 	static StringTokenizer st;
-	static PrintWriter pw = new PrintWriter(System.out);
+	static PrintWriter pw;
 	
 	static class Pair1 implements Comparable<Pair1> {
 		int x, y;
@@ -14,7 +14,6 @@ public class FieldReduction {
 			Pair1 p = (Pair1) o;
 			return x == p.x && y == p.y; 
 		}
-		public String toString() { return x + " " + y; }
 	}
 	
 	static class Pair2 implements Comparable<Pair2> {
