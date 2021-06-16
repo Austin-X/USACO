@@ -10,28 +10,30 @@ public class RestStops {
 		br = new BufferedReader(new FileReader("reststops.in"));
 		pw = new PrintWriter(new BufferedWriter(new FileWriter("reststops.out")));
 		
-		int l = readInt(), n = readInt(), rf = readInt(), rb = readInt();
+		@SuppressWarnings("unused")
+		int l = readInt(), n = readInt(), rf = readInt(), rb = readInt(), mx = 0;
+		boolean[] isMax = new boolean[n];
+		int[] x = new int[n], c = new int[n];
 		long ans = 0;
-		TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>(), map2 = new TreeMap<Integer, Integer>();
+		
 		for (int i = 0; i < n; i ++) {
-			int x = readInt(), c = readInt();
-			if (map.containsKey(c) && x > map.get(c) || !map.containsKey(c)) map.put(c, x);
+			x[i] = readInt();
+			c[i] = readInt();
 		}
-		for (int x: map.keySet()) map2.put(map.get(x), x);
+		for (int i = n - 1; i >= 0; i --) {
+			if (c[i] > mx) {
+				mx = c[i];
+				isMax[i] = true;
+			}
+		}
 
 		int cur = 0;
-		while (cur < l) {
-			if (map2.higherKey(cur) == null) break;
-			int x = map.get(map.lastKey()), c = map.lastKey();
-			long bt = (x - cur) * (long)rb, ft = (x - cur) * (long)rf;
-			ans += (ft - bt) * c;
-			ArrayList<Integer> temp = new ArrayList<Integer>();
-			for (int u: map2.keySet()) { 
-				if (u == x) { temp.add(u); break; }
-				temp.add(u);
+		for (int i = 0; i < n; i ++) {
+			if (isMax[i]) {
+				long bt = (x[i] - cur) * (long)rb, ft = (x[i] - cur) * (long)rf;
+				ans += (ft - bt) * c[i];
+				cur = x[i];
 			}
-			for (int u: temp) { map.remove(map2.get(u)); map2.remove(u); }
-			cur = x;
 		}
 		pw.println(ans);
 		pw.close();
